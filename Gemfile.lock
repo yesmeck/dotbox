@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    backbox (1.0.0)
+      thor
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    thor (0.17.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  backbox!

@@ -10,4 +10,6 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/yesmeck/backbox"
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Backbox::VERSION::STRING
+
+  s.add_dependency 'thor'
 end
