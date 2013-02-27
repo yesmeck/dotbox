@@ -48,33 +48,32 @@ class Backbox::CLI < Thor
     end
   end
 
-  no_tasks do
-    def check_setup
-      if !File.exists?(CONFIG_FILE)
-        die 'Use `bakbox setup` to setup backbox first.'
-      else
-        if !File.exists?(dropbox_path)
-          die "#{dropbox_path} not exists."
-        end
+  def self.source_root
+    File.dirname(File.expand_path('../../bin/backbox', __FILE__))
+  end
+
+  private
+  def check_setup
+    if !File.exists?(CONFIG_FILE)
+      die 'Use `bakbox setup` to setup backbox first.'
+    else
+      if !File.exists?(dropbox_path)
+        die "#{dropbox_path} not exists."
       end
-    end
-
-    def die(msg)
-      say msg
-      exit;
-    end
-
-    def dropbox_path
-      File.read(CONFIG_FILE).strip.chomp('/')
-    end
-
-    def backup_path
-      "#{dropbox_path}/Apps/Backbox"
     end
   end
 
-  def self.source_root
-    File.dirname(File.expand_path('../../bin/backbox', __FILE__))
+  def die(msg)
+    say msg
+    exit;
+  end
+
+  def dropbox_path
+    File.read(CONFIG_FILE).strip.chomp('/')
+  end
+
+  def backup_path
+    "#{dropbox_path}/Apps/Backbox"
   end
 
 end
