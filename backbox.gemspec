@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.version = Backbox::VERSION::STRING
 
   s.add_dependency 'thor'
+  s.add_development_dependency 'aruba'
 end
