@@ -28,7 +28,7 @@ class Backbox::CLI < Thor
         remove_file path
         create_link path, backpath
       else
-        puts "#{path} not exists."
+        say "#{path} not exists."
       end
     end
   end
@@ -43,7 +43,7 @@ class Backbox::CLI < Thor
         copy_file backpath, path
         remove_file backpath
       else
-        puts "#{path} not exists."
+        say "#{path} not exists."
       end
     end
   end
@@ -60,7 +60,7 @@ class Backbox::CLI < Thor
     end
 
     def die(msg)
-      puts msg
+      say msg
       exit;
     end
 
