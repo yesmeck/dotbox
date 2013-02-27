@@ -1,2 +1,1 @@
-module Backbox
-end
+require 'backbox/cli'
