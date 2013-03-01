@@ -17,12 +17,12 @@ module Backbox
     end
 
     def setted?
-      File.exists?(@file) || !ENV['DROPBOX_PATH'].nil?
+      ::File.exists?(@file) || !ENV['DROPBOX_PATH'].nil?
     end
 
     private
     def save(value)
-      f = File.new(@file, 'w+')
+      f = ::File.new(@file, 'w+')
       f.puts(value)
       f.close
     end
