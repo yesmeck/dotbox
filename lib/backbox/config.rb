@@ -9,7 +9,15 @@ module Backbox
     end
 
     def value
-      File.new(@file).read.strip.chomp('/')
+      if ENV['DROPBOX_PATH'].nil?
+        File.new(@file).read.strip.chomp('/')
+      else
+        ENV['DROPBOX_PATH']
+      end
+    end
+
+    def setted?
+      File.exists?(@file) || !ENV['DROPBOX_PATH'].nil?
     end
 
     private

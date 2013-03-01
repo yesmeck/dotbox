@@ -21,6 +21,7 @@ module Backbox
     def add(*pathes)
       check_setup
       pathes.each do |path|
+        path = File.expand_path(path)
         if File.exists?(path)
           backpath = "#{backup_path}/#{path.sub(/^#{Thor::Util.user_home}/, '')}"
           copy_file path, backpath
@@ -48,17 +49,13 @@ module Backbox
     end
 
     def self.source_root
-      File.dirname(File.expand_path('../../bin/backbox', __FILE__))
+      File.dirname(File.expand_path('../../../bin/backbox', __FILE__))
     end
 
     private
     def check_setup
-      if !File.exists?(CONFIG_FILE)
+      if !Config.new(CONFIG_FILE).setted?
         die 'Use `bakbox setup` to setup backbox first.'
-      else
-        if !File.exists?(dropbox_path)
-          die "#{dropbox_path} not exists."
-        end
       end
     end
 
