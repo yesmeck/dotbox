@@ -1,4 +1,4 @@
-module Backbox
+module Dotbox
   class Config
 
     def initialize(file, value = nil)

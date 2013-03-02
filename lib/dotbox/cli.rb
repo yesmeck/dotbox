@@ -1,15 +1,15 @@
-require 'backbox'
-require 'backbox/config'
-require 'backbox/file'
+require 'dotbox'
+require 'dotbox/config'
+require 'dotbox/file'
 
-module Backbox
+module Dotbox
   class CLI < Thor
 
 
     desc :setup, 'Setup bakbox'
     def setup
       dropbox_path = ask('Enter dropbox folder location:').strip
-      Backbox::Config.new(Backbox::CONFIG_FILE, dropbox_path)
+      Dotbox::Config.new(Backbox::CONFIG_FILE, dropbox_path)
       if !::File.exists?(backup_path)
         FileUtils.mkdir_p backup_path
       end
@@ -44,13 +44,13 @@ module Backbox
     end
 
     def self.source_root
-      ::File.dirname(::File.expand_path('../../../bin/backbox', __FILE__))
+      ::File.dirname(::File.expand_path('../../../bin/dotbox', __FILE__))
     end
 
     private
     def check_setup
-      if !Config.new(Backbox::CONFIG_FILE).setted?
-        die 'Use `bakbox setup` to setup backbox first.'
+      if !Config.new(Dotbox::CONFIG_FILE).setted?
+        die 'Use `bakbox setup` to setup dotbox first.'
       end
     end
 

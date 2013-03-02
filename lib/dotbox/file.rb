@@ -1,4 +1,4 @@
-module Backbox
+module Dotbox
   class File
 
     include Thor::Actions
@@ -13,7 +13,7 @@ module Backbox
 
     def backup_path
       if @backup_path.nil?
-        backup_path = "#{Config.new(Backbox::CONFIG_FILE).value}/Apps/Backbox"
+        backup_path = "#{Config.new(Dotbox::CONFIG_FILE).value}/Apps/Backbox"
         if directory?
           backup_path << '/directories'
         else
