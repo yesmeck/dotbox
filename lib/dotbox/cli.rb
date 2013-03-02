@@ -17,13 +17,14 @@ module Dotbox
       check_setup
       @record = Record.new
       pathes.each do |path|
-        path = ::File.expand_path(path)
-        if ::File.exists?(path)
-          file = File.new(path)
+        if Dir[path].empty?
+          die "#{path} not exists."
+        end
+        Dir[path].each do |p|
+          p = ::File.expand_path(p)
+          file = File.new(p)
           file.backup
           @record.add file
-        else
-          say "#{path} not exists."
         end
       end
     end

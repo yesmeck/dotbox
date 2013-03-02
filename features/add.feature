@@ -39,3 +39,16 @@ Feature: add file to dropbox
     And the link named "foo/baz" should be a link of "dropbox/Apps/Dotbox/foo/baz"
     And the record file should contain "foo/baz" => "file"
 
+  @announce
+  Scenario: add file using pattern
+    Given an empty file named "foo/bar"
+    Given an empty file named "foo/baz"
+    When I run `dotbox add foo/*`
+    Then a file named "dropbox/Apps/Dotbox/foo/bar" should exist
+    And the link named "foo/bar" should be a link of "dropbox/Apps/Dotbox/foo/bar"
+    And the record file should contain "foo/bar" => "file"
+    And a file named "dropbox/Apps/Dotbox/foo/baz" should exist
+    And the link named "foo/baz" should be a link of "dropbox/Apps/Dotbox/foo/baz"
+    And the record file should contain "foo/baz" => "file"
+
+
