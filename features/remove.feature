@@ -9,6 +9,12 @@ Feature: remove a file from dotbox
     Then the stdout should contain "not exist"
 
   @announce
+  Scenario: remove a not backuped file
+    Given an empty file named "foo/bar"
+    When I run `dotbox remove foo/bar`
+    Then the stdout should contain "not backuped"
+
+  @announce
   Scenario: remove a backuped file
     Given a backuped file named "foo/bar"
     When I run `dotbox remove foo/bar`

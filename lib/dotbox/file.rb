@@ -37,5 +37,17 @@ module Dotbox
       FileUtils.mv backup_path, @path
     end
 
+    def backuped?
+      link? && link_of?(backup_path)
+    end
+
+    def link?
+      ::File.readlink @path rescue false
+    end
+
+    def link_of?(src)
+      ::File.readlink(@path) == src
+    end
+
   end
 end

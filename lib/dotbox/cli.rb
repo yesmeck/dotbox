@@ -33,11 +33,13 @@ module Dotbox
       check_setup
       pathes.each do |path|
         path = ::File.expand_path(path)
-        if ::File.exists?(path)
-          File.new(path).remove
-        else
-          say "#{path} not exists."
+        file = File.new(path)
+        if !::File.exists?(path)
+          die "#{path} not exists."
+        elsif !file.backuped?
+          die "#{path} is not backuped."
         end
+        file.remove
       end
     end
 
