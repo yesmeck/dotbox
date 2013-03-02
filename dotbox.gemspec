@@ -1,7 +1,7 @@
 require File.expand_path("../lib/dotbox/version", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = "backbox"
+  s.name = "dotbox"
   s.description = "Backup your dotfiles to dropbox and restore them easily."
   s.summary = s.description
   s.authors = ["Wei Zhu"]
