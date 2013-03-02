@@ -24,7 +24,7 @@ module Dotbox
     end
 
     def save
-      record_file = ::File.new(@record_file_path, 'r+')
+      record_file = ::File.new(@record_file_path, 'w+')
       record_file.puts(YAML.dump(@records))
       record_file.close
     end
