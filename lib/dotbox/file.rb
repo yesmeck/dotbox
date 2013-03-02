@@ -33,6 +33,9 @@ module Dotbox
       backup_path
       FileUtils.rm @abs_path
       FileUtils.mv backup_path, @abs_path
+      if Dir["#{::File.dirname(backup_path)}/*"].empty?
+        FileUtils.rm_r ::File.dirname(backup_path)
+      end
     end
 
     def restore
