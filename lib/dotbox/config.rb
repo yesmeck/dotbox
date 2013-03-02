@@ -10,7 +10,7 @@ module Dotbox
 
     def value
       if ENV['DROPBOX_PATH'].nil?
-        File.new(@file).read.strip.chomp('/')
+        ::File.new(@file).read.strip.chomp('/')
       else
         ENV['DROPBOX_PATH']
       end
