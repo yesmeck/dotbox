@@ -32,11 +32,9 @@ module Dotbox
     def remove(*pathes)
       check_setup
       pathes.each do |path|
+        path = ::File.expand_path(path)
         if ::File.exists?(path)
-          backpath = "#{backup_path}/#{path.sub(/^#{Thor::Util.user_home}/, '')}"
-          remove_file path
-          copy_file backpath, path
-          remove_file backpath
+          File.new(path).remove
         else
           say "#{path} not exists."
         end

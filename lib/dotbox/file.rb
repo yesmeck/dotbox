@@ -13,7 +13,7 @@ module Dotbox
 
     def backup_path
       if @backup_path.nil?
-        backup_path = "#{Config.new(Dotbox::CONFIG_FILE).value}/Apps/Backbox"
+        backup_path = "#{Config.new(Dotbox::CONFIG_FILE).value}/Apps/Dotbox"
         if directory?
           backup_path << '/directories'
         else
@@ -28,6 +28,11 @@ module Dotbox
       FileUtils.mkdir_p ::File.dirname(backup_path)
       FileUtils.mv @path, backup_path
       FileUtils.ln_s backup_path, @path
+    end
+
+    def remove
+      FileUtils.rm @path
+      FileUtils.mv backup_path, @path
     end
 
   end

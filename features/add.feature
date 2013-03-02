@@ -13,15 +13,15 @@ Feature: add file to dropbox
   Scenario: add a exists file
     Given an empty file named "foo/bar"
     When I run `dotbox add foo/bar`
-    Then a file named "dropbox/Apps/Backbox/files/foo/bar" should exist
-    And the file named "foo/bar" should be a link of "dropbox/Apps/Backbox/files/foo/bar"
+    Then a file named "dropbox/Apps/Dotbox/files/foo/bar" should exist
+    And the file named "foo/bar" should be a link of "dropbox/Apps/Dotbox/files/foo/bar"
 
   @announce
   Scenario: add a directory
     Given a directory named "foo/bar"
     Given an empty file named "foo/bar/example"
     When I run `dotbox add foo/bar`
-    Then a directory named "dropbox/Apps/Backbox/directories/foo/bar"
-    And a file named "dropbox/Apps/Backbox/directories/foo/bar/example" should exist
-    And the directory named "foo/bar" should be a link of "dropbox/Apps/Backbox/directories/foo/bar"
+    Then a directory named "dropbox/Apps/Dotbox/directories/foo/bar"
+    And a file named "dropbox/Apps/Dotbox/directories/foo/bar/example" should exist
+    And the directory named "foo/bar" should be a link of "dropbox/Apps/Dotbox/directories/foo/bar"
 
