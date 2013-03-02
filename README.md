@@ -20,7 +20,7 @@ Tasks:
   dotbox setup        # Setup bakbox
 ```
 
-### How does it works?
+## How does it works?
 
 Assume that we have a file named `/home/meck/.zshrc`.
 
