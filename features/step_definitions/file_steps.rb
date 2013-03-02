@@ -1,24 +1,23 @@
 require 'dotbox'
 require 'dotbox/config'
 require 'dotbox/record'
+require 'dotbox/file'
 
 World(Aruba::Api)
 
-Given /^a backuped file named "(.*?)"$/ do |filename|
+Given /^a backuped file named "(.*?)"$/ do |path|
+  write_file(path, "")
   in_current_dir do
-    backuped_filename = File.expand_path("dropbox/Apps/Dotbox/files/#{filename}")
-    write_file(backuped_filename, "")
-    _mkdir(File.dirname(filename))
-    FileUtils.ln_s backuped_filename, filename
+    file = Dotbox::File.new(path)
+    file.backup
   end
 end
 
-Given /^a backuped directory named "(.*?)"$/ do |dirname|
+Given /^a backuped directory named "(.*?)"$/ do |path|
   in_current_dir do
-    backuped_dirname = File.expand_path("dropbox/Apps/Dotbox/directories/#{dirname}")
-    _mkdir(backuped_dirname)
-    _mkdir(File.dirname(dirname))
-    FileUtils.ln_s backuped_dirname, dirname
+    _mkdir(path)
+    file = Dotbox::File.new(path)
+    file.backup
   end
 end
 
@@ -30,10 +29,9 @@ Then /^the link named "(.*?)" should be a link of "(.*?)"$/ do |link, file|
   end
 end
 
-Then /^the (?:file|directory) named "(.*?)" should not be a link$/ do |file|
+Then /^the (?:file|directory) named "(.*?)" should not be a link$/ do |path|
   in_current_dir do
-    link_file = File.readlink(file) rescue nil
-    link_file.should be nil
+    File.should_not be_symlink(path)
   end
 end
 
