@@ -31,6 +31,8 @@ module Dotbox
     end
 
     def remove
+      # must get the backup path first
+      backup_path
       FileUtils.rm @path
       FileUtils.mv backup_path, @path
     end
