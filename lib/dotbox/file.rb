@@ -1,9 +1,11 @@
+require 'dotbox/actions'
+
 module Dotbox
   class File
 
     attr_reader :abs_path, :rel_path
 
-    include Thor::Actions
+    include Dotbox::Actions
 
     def initialize(path)
       @abs_path = ::File.expand_path(path)
@@ -33,9 +35,7 @@ module Dotbox
       backup_path
       FileUtils.rm @abs_path
       FileUtils.mv backup_path, @abs_path
-      if Dir["#{::File.dirname(backup_path)}/*"].empty?
-        FileUtils.rm_r ::File.dirname(backup_path)
-      end
+      rm_empty_dir ::File.dirname(backup_path)
     end
 
     def restore
