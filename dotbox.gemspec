@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/yesmeck/dotbox"
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Dotbox::VERSION::STRING
+  s.executables << 'dotbox'
 
   s.add_dependency 'thor'
   s.add_development_dependency 'aruba'
