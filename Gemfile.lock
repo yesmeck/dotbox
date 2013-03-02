@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    backbox (1.0.0)
+    dotbox (1.0.0)
       thor
 
 GEM
@@ -39,5 +39,5 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
-  backbox!
+  dotbox!
   rspec
