@@ -10,6 +10,7 @@ Given /^a backuped file named "(.*?)"$/ do |path|
   in_current_dir do
     file = Dotbox::File.new(path)
     file.backup
+    Dotbox::Record.new.add file
   end
 end
 
@@ -18,6 +19,7 @@ Given /^a backuped directory named "(.*?)"$/ do |path|
     _mkdir(path)
     file = Dotbox::File.new(path)
     file.backup
+    Dotbox::Record.new.add file
   end
 end
 
@@ -41,8 +43,14 @@ Then /^a link named "(.*?)" should exist$/ do |link|
   end
 end
 
-Then /^the record file show contain "(.*?)" => "(.*?)"$/ do |path, type|
+Then /^the record file should contain "(.*?)" => "(.*?)"$/ do |path, type|
   record  = Dotbox::Record.new
   record[path].should == type
+end
+
+
+Then /^the record file should not contain "(.*?)"$/ do |path|
+  record  = Dotbox::Record.new
+  record[path].should be nil
 end
 

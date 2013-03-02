@@ -1,4 +1,3 @@
-require 'yaml'
 require 'dotbox/file'
 
 module Dotbox
@@ -18,9 +17,14 @@ module Dotbox
       save
     end
 
+    def remove(file)
+      @records.delete file.rel_path
+    end
+
     def save
-      @record_file ||= ::File.new(@record_file_path, 'r+')
-      @record_file.puts(YAML.dump(@records))
+      record_file = ::File.new(@record_file_path, 'r+')
+      record_file.puts(YAML.dump(@records))
+      record_file.close
     end
 
     def [](path)

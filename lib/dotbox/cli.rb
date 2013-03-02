@@ -47,6 +47,7 @@ module Dotbox
           die "#{path} is not backuped."
         end
         file.remove
+        @record.remove file
       end
     end
 

@@ -22,6 +22,7 @@ Feature: remove a file from dotbox
     Then a file named "dropbox/Apps/Dotbox/foo" should not exist
     And a file named "foo/bar" should exist
     And the file named "foo/bar" should not be a link
+    And the record file should not contain "foo/bar"
 
   @announce
   Scenario: remove a backuped directory
@@ -31,3 +32,4 @@ Feature: remove a file from dotbox
     And a directory named "dropbox/Apps/Dotbox/foo" should not exist
     And a directory named "foo/bar" should exist
     And the directory named "foo/bar" should not be a link
+    And the record file should not contain "foo/bar"
