@@ -19,7 +19,7 @@ Feature: remove a file from dotbox
     Given a backuped file named "foo/bar"
     When I run `dotbox remove foo/bar`
     Then a file named "dropbox/Apps/Dotbox/foo/bar" should not exist
-    Then a file named "dropbox/Apps/Dotbox/foo" should not exist
+    And a file named "dropbox/Apps/Dotbox/foo" should not exist
     And a file named "foo/bar" should exist
     And the file named "foo/bar" should not be a link
     And the record file should not contain "foo/bar"
@@ -33,3 +33,16 @@ Feature: remove a file from dotbox
     And a directory named "foo/bar" should exist
     And the directory named "foo/bar" should not be a link
     And the record file should not contain "foo/bar"
+
+  @announce
+  Scenario: remove a backuped file in which directory has two files
+    Given a backuped file named "foo/bar"
+    And a backuped file named "foo/baz"
+    When I run `dotbox remove foo/bar`
+    Then a file named "dropbox/Apps/Dotbox/foo/bar" should not exist
+    And a file named "dropbox/Apps/Dotbox/foo/baz" should exist
+    And a file named "foo/bar" should exist
+    And the file named "foo/bar" should not be a link
+    And the record file should not contain "foo/bar"
+    And the record file should contain "foo/baz" => "file"
+
