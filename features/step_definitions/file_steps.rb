@@ -20,6 +20,18 @@ Given /^a backuped directory named "(.*?)"$/ do |path|
   end
 end
 
+Given /^a backup file named "(.*?)"$/ do |path|
+  in_current_dir do
+    create_backup_file path
+  end
+end
+
+Given /^a backup directory named "(.*?)"$/ do |path|
+  in_current_dir do
+    create_backup_directory path
+  end
+end
+
 
 Then /^the link named "(.*?)" should be a link of "(.*?)"$/ do |link, file|
   in_current_dir do

@@ -32,5 +32,11 @@ module Dotbox
       @records[path]
     end
 
+    def each
+      @records.each do |path, type|
+        yield path
+      end
+    end
+
   end
 end
