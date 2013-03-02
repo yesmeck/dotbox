@@ -43,6 +43,17 @@ module Dotbox
       end
     end
 
+    desc :restore, 'Restore all backuped files'
+    def restore
+      backup_path = "#{Config.new(Dotbox::CONFIG_FILE).value}/Apps/Dotbox/files"
+      Dir.glob("#{backup_path}/**/*").each do |path|
+        if ::File.file?(path)
+          file = File.new(path.sub(/^#{backup_path}\//, ''))
+          file.restore
+        end
+      end
+    end
+
     def self.source_root
       ::File.dirname(::File.expand_path('../../../bin/dotbox', __FILE__))
     end

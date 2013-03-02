@@ -19,7 +19,7 @@ module Dotbox
         else
           backup_path << '/files'
         end
-        @backup_path = ::File.expand_path("#{backup_path}#{@path.sub(/^#{Thor::Util.user_home}/, '')}")
+        @backup_path = ::File.expand_path("#{backup_path}/#{@path.sub(/^#{Thor::Util.user_home}/, '')}")
       end
       @backup_path
     end
@@ -37,12 +37,17 @@ module Dotbox
       FileUtils.mv backup_path, @path
     end
 
+    def restore
+      FileUtils.mkdir_p ::File.dirname(@path)
+      FileUtils.ln_s backup_path, @path
+    end
+
     def backuped?
       link? && link_of?(backup_path)
     end
 
     def link?
-      ::File.readlink @path rescue false
+      ::File.symlink? @path
     end
 
     def link_of?(src)
