@@ -6,11 +6,6 @@ require 'dotbox/record'
 module Dotbox
   class CLI < Thor
 
-    def initialize(*args)
-      super
-      @record = Record.new
-    end
-
     desc :setup, 'Setup bakbox'
     def setup
       dropbox_path = ask('Enter dropbox folder location:').strip
@@ -23,6 +18,7 @@ module Dotbox
     desc :add, 'Backup the file'
     def add(*pathes)
       check_setup
+      @record = Record.new
       pathes.each do |path|
         path = ::File.expand_path(path)
         if ::File.exists?(path)
@@ -38,6 +34,7 @@ module Dotbox
     desc :remove, 'Remove the backuped file'
     def remove(*pathes)
       check_setup
+      @record = Record.new
       pathes.each do |path|
         path = ::File.expand_path(path)
         file = File.new(path)
@@ -54,6 +51,7 @@ module Dotbox
     desc :restore, 'Restore all backuped files'
     def restore
       check_setup
+      @record = Record.new
       @record.each do |path|
         file = File.new(path)
         file.restore
