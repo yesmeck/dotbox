@@ -19,6 +19,7 @@ module Dotbox
 
     def remove(file)
       @records.delete file.rel_path
+      save
     end
 
     def save

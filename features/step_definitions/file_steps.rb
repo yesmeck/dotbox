@@ -1,25 +1,22 @@
 require 'dotbox'
 require 'dotbox/config'
 require 'dotbox/record'
-require 'dotbox/file'
+require 'dotbox/api'
 
 World(Aruba::Api)
+World(Dotbox::Api)
 
 Given /^a backuped file named "(.*?)"$/ do |path|
   write_file(path, "")
   in_current_dir do
-    file = Dotbox::File.new(path)
-    file.backup
-    Dotbox::Record.new.add file
+    create_backup(path)
   end
 end
 
 Given /^a backuped directory named "(.*?)"$/ do |path|
   in_current_dir do
     _mkdir(path)
-    file = Dotbox::File.new(path)
-    file.backup
-    Dotbox::Record.new.add file
+    create_backup(path)
   end
 end
 
