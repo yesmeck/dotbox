@@ -1,3 +1,7 @@
+require 'dotbox'
+require 'dotbox/config'
+require 'dotbox/record'
+
 World(Aruba::Api)
 
 Given /^a backuped file named "(.*?)"$/ do |filename|
@@ -37,5 +41,10 @@ Then /^a link named "(.*?)" should exist$/ do |link|
   in_current_dir do
     File.should be_symlink(link)
   end
+end
+
+Then /^the record file show contain "(.*?)" => "(.*?)"$/ do |path, type|
+  record  = Dotbox::Record.new
+  record[path].should == type
 end
 

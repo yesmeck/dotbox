@@ -1,45 +1,43 @@
 module Dotbox
   class File
 
+    attr_reader :abs_path, :rel_path
+
     include Thor::Actions
 
     def initialize(path)
-      @path = path
+      @abs_path = ::File.expand_path(path)
+      @rel_path = @abs_path.sub(/^#{Thor::Util.user_home}\//, '')
     end
 
     def directory?
-      ::File.directory?(@path)
+      ::File.directory?(@abs_path)
     end
 
     def backup_path
       if @backup_path.nil?
         backup_path = "#{Config.new(Dotbox::CONFIG_FILE).value}/Apps/Dotbox"
-        if directory?
-          backup_path << '/directories'
-        else
-          backup_path << '/files'
-        end
-        @backup_path = ::File.expand_path("#{backup_path}/#{@path.sub(/^#{Thor::Util.user_home}/, '')}")
+        @backup_path = ::File.expand_path("#{backup_path}/#{@rel_path}")
       end
       @backup_path
     end
 
     def backup
       FileUtils.mkdir_p ::File.dirname(backup_path)
-      FileUtils.mv @path, backup_path
-      FileUtils.ln_s backup_path, @path
+      FileUtils.mv @abs_path, backup_path
+      FileUtils.ln_s backup_path, @abs_path
     end
 
     def remove
       # must get the backup path first
       backup_path
-      FileUtils.rm @path
-      FileUtils.mv backup_path, @path
+      FileUtils.rm @abs_path
+      FileUtils.mv backup_path, @abs_path
     end
 
     def restore
-      FileUtils.mkdir_p ::File.dirname(@path)
-      FileUtils.ln_s backup_path, @path
+      FileUtils.mkdir_p ::File.dirname(@abs_path)
+      FileUtils.ln_s backup_path, @abs_path
     end
 
     def backuped?
@@ -47,11 +45,15 @@ module Dotbox
     end
 
     def link?
-      ::File.symlink? @path
+      ::File.symlink? @abs_path
     end
 
     def link_of?(src)
-      ::File.readlink(@path) == src
+      ::File.readlink(@abs_path) == src
+    end
+
+    def type
+      @type = directory? ? 'directory' : 'file'
     end
 
   end

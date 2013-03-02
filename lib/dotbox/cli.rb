@@ -1,10 +1,15 @@
 require 'dotbox'
 require 'dotbox/config'
 require 'dotbox/file'
+require 'dotbox/record'
 
 module Dotbox
   class CLI < Thor
 
+    def initialize(*args)
+      super
+      @record = Record.new
+    end
 
     desc :setup, 'Setup bakbox'
     def setup
@@ -21,7 +26,9 @@ module Dotbox
       pathes.each do |path|
         path = ::File.expand_path(path)
         if ::File.exists?(path)
-          File.new(path).backup
+          file = File.new(path)
+          file.backup
+          @record.add file
         else
           say "#{path} not exists."
         end
