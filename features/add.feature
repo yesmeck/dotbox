@@ -11,9 +11,10 @@ Feature: add file to dropbox
 
   @announce
   Scenario: add a exists file
-    Given an empty file named "foo/bar/example"
-    When I run `backbox add foo/bar/example`
-    Then a file named "dropbox/Apps/Backbox/files/foo/bar/example" should exist
+    Given an empty file named "foo/bar"
+    When I run `backbox add foo/bar`
+    Then a file named "dropbox/Apps/Backbox/files/foo/bar" should exist
+    And the file named "foo/bar" should be a link of "dropbox/Apps/Backbox/files/foo/bar"
 
   @announce
   Scenario: add a directory
@@ -22,4 +23,5 @@ Feature: add file to dropbox
     When I run `backbox add foo/bar`
     Then a directory named "dropbox/Apps/Backbox/directories/foo/bar"
     And a file named "dropbox/Apps/Backbox/directories/foo/bar/example" should exist
+    And the directory named "foo/bar" should be a link of "dropbox/Apps/Backbox/directories/foo/bar"
 
