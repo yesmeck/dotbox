@@ -10,9 +10,6 @@ module Dotbox
     def setup
       dropbox_path = ask('Enter dropbox folder location:').strip
       Dotbox::Config.new(Dotbox::CONFIG_FILE, dropbox_path)
-      if !::File.exists?(backup_path)
-        FileUtils.mkdir_p backup_path
-      end
     end
 
     desc :add, 'Backup the file'

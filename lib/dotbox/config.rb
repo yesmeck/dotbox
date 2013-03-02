@@ -23,7 +23,7 @@ module Dotbox
     private
     def save(value)
       f = ::File.new(@file, 'w+')
-      f.puts(value)
+      f.write(value)
       f.close
     end
 
