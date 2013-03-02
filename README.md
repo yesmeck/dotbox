@@ -8,7 +8,7 @@ Backup your dotfiles to dropbox and restore them easily.
 gem i dotbox
 ```
 
-## Useage
+## Usage
 
 ```
 $ dotbox -h
