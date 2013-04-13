@@ -51,4 +51,10 @@ Feature: add file to dropbox
     And the link named "foo/baz" should be a link of "dropbox/Apps/Dotbox/foo/baz"
     And the record file should contain "foo/baz" => "file"
 
+  @announce
+  Scenario: add a file twice
+    Given a backup file named "foo/bar"
+    Given an empty file named "foo/bar"
+    When I run `dotbox add foo/bar`
+    Then the stdout should contain "foo/bar has been backuped."
 

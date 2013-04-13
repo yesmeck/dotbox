@@ -21,10 +21,14 @@ module Dotbox
           die "#{path} not exists."
         end
         Dir[path].each do |p|
-          p = ::File.expand_path(p)
-          file = File.new(p)
-          file.backup
-          @record.add file
+          begin
+            p = ::File.expand_path(p)
+            file = File.new(p)
+            file.backup
+            @record.add file
+          rescue => ex
+            die ex.message
+          end
         end
       end
     end

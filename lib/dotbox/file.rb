@@ -25,6 +25,9 @@ module Dotbox
     end
 
     def backup
+      if ::File.exist?(backup_path)
+        raise "#{@rel_path} has been backuped."
+      end
       FileUtils.mkdir_p ::File.dirname(backup_path)
       FileUtils.mv @abs_path, backup_path
       FileUtils.ln_s backup_path, @abs_path
