@@ -42,8 +42,13 @@ module Dotbox
     end
 
     def restore
-      if ::File.exist?(@abs_path)
-        FileUtils.mv @abs_path, "#{@abs_path}.bak"
+      if exist?
+        if link? && link_of?(backup_path)
+          # Dont need restore
+          return
+        else
+          FileUtils.mv @abs_path, "#{@abs_path}.bak"
+        end
       end
       FileUtils.mkdir_p ::File.dirname(@abs_path)
       FileUtils.ln_s backup_path, @abs_path
@@ -63,6 +68,10 @@ module Dotbox
 
     def type
       @type = directory? ? 'directory' : 'file'
+    end
+
+    def exist?
+      ::File.exist?(@abs_path)
     end
 
   end
