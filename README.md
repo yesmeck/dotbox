@@ -1,5 +1,7 @@
 # Dotbox
 
+[![Build Status](https://travis-ci.org/yesmeck/dotbox.png?branch=master)](https://travis-ci.org/yesmeck/dotbox)
+
 Backup your dotfiles to dropbox and restore them easily.
 
 ## Installation
