@@ -40,4 +40,10 @@ $ mv /home/meck/Dropbox/Apps/Dotbox/.zshrc /home/meck.zshrc
 
 When you run `dotbox restore` it will link all files in dropbox to  their original postions.
 
+## Not only dotfiles
+
+Acturally, dotbox can take care of any files or directories under your $HOME directory. For example:
+```
+$ dotbox add .oh-my-fish/custom
+```
 
