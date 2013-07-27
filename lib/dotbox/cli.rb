@@ -2,6 +2,7 @@ require 'dotbox'
 require 'dotbox/config'
 require 'dotbox/file'
 require 'dotbox/record'
+require 'dotbox/version'
 
 module Dotbox
   class CLI < Thor
@@ -58,6 +59,11 @@ module Dotbox
         file = File.new(path)
         file.restore
       end
+    end
+
+    desc :version, 'Display version number'
+    def version
+      puts Dotbox::VERSION::STRING
     end
 
     def self.source_root
