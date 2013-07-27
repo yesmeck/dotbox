@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dotbox (1.0.1)
+    dotbox (1.0.2)
       thor
 
 GEM
