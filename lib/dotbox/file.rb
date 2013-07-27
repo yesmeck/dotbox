@@ -29,15 +29,15 @@ module Dotbox
         raise "#{@rel_path} has been backuped."
       end
       FileUtils.mkdir_p ::File.dirname(backup_path)
-      FileUtils.mv @abs_path, backup_path
-      FileUtils.ln_s backup_path, @abs_path
+      FileUtils.mv @abs_path, backup_path, verbose: true
+      FileUtils.ln_s backup_path, @abs_path, verbose: true
     end
 
     def remove
       # must get the backup path first
       backup_path
-      FileUtils.rm @abs_path
-      FileUtils.mv backup_path, @abs_path
+      FileUtils.rm @abs_path, verbose: true
+      FileUtils.mv backup_path, @abs_path, verbose: true
       rm_empty_dir ::File.dirname(backup_path)
     end
 
@@ -47,11 +47,11 @@ module Dotbox
           # Dont need restore
           return
         else
-          FileUtils.mv @abs_path, "#{@abs_path}.bak"
+          FileUtils.mv @abs_path, "#{@abs_path}.bak", verbose: true
         end
       end
-      FileUtils.mkdir_p ::File.dirname(@abs_path)
-      FileUtils.ln_s backup_path, @abs_path
+      FileUtils.mkdir_p ::File.dirname(@abs_path), verbose: true
+      FileUtils.ln_s backup_path, @abs_path, verbose: true
     end
 
     def backuped?
