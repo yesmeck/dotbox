@@ -38,7 +38,7 @@ $ rm /home/meck/.zshrc
 $ mv /home/meck/Dropbox/Apps/Dotbox/.zshrc /home/meck.zshrc
 ```
 
-When you run `dotbox restore` it will link all files in dropbox to  their original postions.
+When you run `dotbox restore` it will link all files in dropbox to  their original positions.
 
 ## Not only dotfiles
 
