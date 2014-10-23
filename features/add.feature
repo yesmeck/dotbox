@@ -5,12 +5,12 @@ Feature: add file to dropbox
   I want to add the file to dropbox and link it back
 
   @announce
-  Scenario: add a not exists file
+  Scenario: add a not exist file
     When I run `dotbox add not_exist_file`
     Then the stdout should contain "not exist"
 
   @announce
-  Scenario: add a exists file
+  Scenario: add a exist file
     Given an empty file named "foo/bar"
     When I run `dotbox add foo/bar`
     Then a file named "dropbox/Apps/Dotbox/foo/bar" should exist
