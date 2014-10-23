@@ -1,6 +1,6 @@
 Feature: add file to dropbox
 
-  In order backup the file
+  In order to backup the file
   As a user
   I want to add the file to dropbox and link it back
 
