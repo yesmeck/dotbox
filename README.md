@@ -24,7 +24,7 @@ Tasks:
 
 ## How does it works?
 
-Assume that we have a file named `/home/meck/.zshrc`.
+Suppose that we have a file named `/home/meck/.zshrc`.
 
 When you run `dotbox add .zshrc`, it equals running following commands:
 ```
